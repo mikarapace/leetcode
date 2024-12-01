@@ -2,21 +2,18 @@ from typing import List
 
 class Solution:
     def minimumAbsDifference(self, arr: List[int]) -> List[List[int]]:
+        result = list()
         arr.sort()
-        min_diff = int
+        min_diff = arr[1] - arr[0]
         for i in range(len(arr) - 1):
             diff = abs(arr[i+1] - arr[i])
-            if i == 0:
-                min_diff = diff
             if diff < min_diff:
                 min_diff = diff
+                result.clear()
+                result.append([arr[i], arr[i+1]])
 
-        result = list()
-        for i in range(len(arr) - 1):
-            if abs(arr[i+1] - arr[i]) == min_diff:
-                array = [arr[i+1], arr[i]]
-                array.sort()
-                result.append(array)
+            elif diff == min_diff:
+                result.append([arr[i], arr[i+1]])
 
         return result
 
